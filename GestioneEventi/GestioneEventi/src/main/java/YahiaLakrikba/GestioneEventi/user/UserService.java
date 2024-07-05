@@ -58,6 +58,15 @@ public class UserService {
 
     }
 
+    public User findByEmail(String email) throws NotFoundException {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new NotFoundException("User with email " + email + " not found");
+        }
+        return user;
+    }
+
+
 }
 
 

@@ -9,36 +9,36 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EventoService {
+public class EventService {
 
     @Autowired
-    private EventRepository eventoRepository;
+    private EventRepository eventRepository;
 
-    public Page<Event> getEventi(int page, int size, String orderBy) {
+    public Page<Event> getEvent(int page, int size, String orderBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
-        return eventoRepository.findAll(pageable);
+        return eventRepository.findAll(pageable);
     }
 
     public Event findById(long id) throws NotFoundException {
-        return eventoRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+        return eventRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
     public void deleteById(long id) throws NotFoundException {
         Event found = findById(id);
-        eventoRepository.delete(found);
+        eventRepository.delete(found);
     }
 
-    public Event updateEvento(long id, Event body) throws NotFoundException {
+    public Event updateEvent(long id, Event body) throws NotFoundException {
         Event found = findById(id);
         found.setTitle(body.getTitle());
         found.setDescription(body.getDescription());
         found.setLocation(body.getLocation());
         found.setSeatsAvailable(body.getSeatsAvailable());
-        return eventoRepository.save(found);
+        return eventRepository.save(found);
     }
 
-    public Event createEvento(Event evento) {
-        return eventoRepository.save(evento);
+    public Event createEvent(Event evento) {
+        return eventRepository.save(evento);
     }
 
 }
