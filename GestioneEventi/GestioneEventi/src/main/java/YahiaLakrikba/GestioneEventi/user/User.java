@@ -1,6 +1,7 @@
 package YahiaLakrikba.GestioneEventi.user;
 
 
+import YahiaLakrikba.GestioneEventi.event.Event;
 import jakarta.persistence.*;
 
 
